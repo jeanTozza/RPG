@@ -13,7 +13,7 @@ public class Game {
 			System.out.println(msg);
 			choice = scanner.nextInt();
 			if ((choice < min) || (choice > max)) {
-				System.out.println("Réponse incorrect,veuillez recommencer");
+				System.out.println("RÃ©ponse incorrect,veuillez recommencer");
 			}
 		} while ((choice < min) || (choice > max));
 		return choice;
@@ -27,7 +27,7 @@ public class Game {
 			System.out.println(msg);
 			choice=scanner.next();
 			if ((!choice.contentEquals("Warrior"))&&(!choice.contentEquals("Hunter"))&&(!choice.contentEquals("Mage"))&&(!choice.contentEquals("Healer"))) {
-				System.out.println("Réponse incorrect,veuillez recommencer");
+				System.out.println("RÃ©ponse incorrect,veuillez recommencer");
 			}
 		}while((!choice.contentEquals("Warrior"))&&(!choice.contentEquals("Hunter"))&&(!choice.contentEquals("Mage"))&&(!choice.contentEquals("Healer")));
 		return choice;
@@ -36,29 +36,29 @@ public class Game {
 	public static void creation_heros(List<Hero> liste, int n) {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < n; i++) {
-			String nom_hero = scannerHero("Sélectionnez un type de héro: Warrior, Hunter,Mage,Healer.");
+			String nom_hero = scannerHero("SÃ©lectionnez un type de hÃ©ro: Warrior, Hunter,Mage,Healer.");
 			if (nom_hero.contentEquals("Warrior")) {
-				System.out.println("Nommez votre héro");
+				System.out.println("Nommez votre hÃ©ro");
 				String new_name = scanner.next();
 				Warrior player = new Warrior(new_name, 20, 5, 3);
 				liste.add(player);
 			}
 			if (nom_hero.contentEquals("Hunter")) {
-				System.out.println("Nommez votre héro");
+				System.out.println("Nommez votre hÃ©ro");
 				String new_name = scanner.next();
 				Hunter player = new Hunter(new_name, 17, 6, 4);
 				liste.add(player);
 
 			}
 			if (nom_hero.contentEquals("Mage")) {
-				System.out.println("Nommez votre héro");
+				System.out.println("Nommez votre hÃ©ro");
 				String new_name = scanner.next();
 				Mage player = new Mage(new_name, 30, 12, 0, 30);
 
 				liste.add(player);
 			}
 			if (nom_hero.contentEquals("Healer")) {
-				System.out.println("Nommez votre héro");
+				System.out.println("Nommez votre hÃ©ro");
 				String new_name = scanner.next();
 				Healer player = new Healer(new_name, 20, 1, 1, 20);
 
@@ -67,7 +67,7 @@ public class Game {
 			}
 		}
 
-		System.out.print("Voici votre équipe de choc: ");
+		System.out.print("Voici votre Ã©quipe de choc: ");
 		for (Hero j : liste) {
 			System.out.print(j.getClass().getSimpleName() + " " + j.getHeroName() + ", ");
 		}
@@ -80,7 +80,29 @@ public class Game {
 			liste.add(enemy);
 		}
 		for (int j = 0; j < liste.size() - 1; j++) {
-			System.out.print(liste.get(j).getClass().getSimpleName());
+			System.out.print(liste.get(j).getClass().getSimpleName()+", ");
+		}
+		System.out.println(liste.get(liste.size() - 1).getClass().getSimpleName());
+
+	}
+	public static void creation_enemy1(List<Enemy> liste, int nombre) {
+		for (int i = 0; i < nombre; i++) {
+			Middle_Enemy enemy = new Middle_Enemy(25, 9, 5);
+			liste.add(enemy);
+		}
+		for (int j = 0; j < liste.size() - 1; j++) {
+			System.out.print(liste.get(j).getClass().getSimpleName()+", ");
+		}
+		System.out.println(liste.get(liste.size() - 1).getClass().getSimpleName());
+
+	}
+	public static void creation_enemy2(List<Enemy> liste, int nombre) {
+		for (int i = 0; i < nombre; i++) {
+			Boss enemy = new Boss(25, 9, 5);
+			liste.add(enemy);
+		}
+		for (int j = 0; j < liste.size() - 1; j++) {
+			System.out.print(liste.get(j).getClass().getSimpleName()+", ");
 		}
 		System.out.println(liste.get(liste.size() - 1).getClass().getSimpleName());
 
@@ -132,13 +154,13 @@ public class Game {
 	}
 
 	public static void caracteristiques(List<List<Item>> liste_item, List<Hero> liste_hero) {
-		int choix = scannerInt("Voulez-vous connaitre les caractéristiques de vos héros?    1-Oui   2-Non", 1, 2);
+		int choix = scannerInt("Voulez-vous connaitre les caractÃ©ristiques de vos hÃ©ros?    1-Oui   2-Non", 1, 2);
 		if (choix == 1) {
 			for (int i = 0; i < liste_hero.size(); i++) {
 				System.out.println(
 						liste_hero.get(i).getClass().getSimpleName() + " " + liste_hero.get(i).getHeroName() + " :");
-				System.out.println("Dégats de l'arme: " + liste_item.get(i).get(0).getDegats());
-				System.out.println("Défense: " + liste_hero.get(i).getDefence());
+				System.out.println("DÃ©gats de l'arme: " + liste_item.get(i).get(0).getDegats());
+				System.out.println("DÃ©fense: " + liste_hero.get(i).getDefence());
 				System.out.println("Nourriture: " + liste_item.get(i).get(1).getNumber() + " steaks");
 				if ((liste_hero.get(i).getClass().getSimpleName().contentEquals("Mage"))
 						|| (liste_hero.get(i).getClass().getSimpleName().contentEquals("Healer"))) {
@@ -149,12 +171,12 @@ public class Game {
 	}
 
 	public static void caractennemy(List<Enemy> liste) {
-		int choix = scannerInt("Voulez-vous connaitre les caractéristiques de vos ennemis?    1-Oui   2-Non", 1, 2);
+		int choix = scannerInt("Voulez-vous connaitre les caractÃ©ristiques de vos ennemis?    1-Oui   2-Non", 1, 2);
 		if (choix == 1) {
 			for (int i = 0; i < liste.size(); i++) {
 				System.out.println(liste.get(i).getClass().getSimpleName());
-				System.out.println("Dégats de l'arme: " + liste.get(i).getAttack());
-				System.out.println("Défense: " + liste.get(i).getDefence());
+				System.out.println("DÃ©gats de l'arme: " + liste.get(i).getAttack());
+				System.out.println("DÃ©fense: " + liste.get(i).getDefence());
 
 			}
 			System.out.println("***********");
@@ -195,7 +217,7 @@ public class Game {
 		}
 		if (player.getClass().getSimpleName().contentEquals("Hunter")) {
 			System.out.println(
-					"Il ne vous reste plus que " + liste_item.get(i).get(0).getNombre_Utilisation() + " flèches");
+					"Il ne vous reste plus que " + liste_item.get(i).get(0).getNombre_Utilisation() + " flÃ¨ches");
 		}
 	}
 
@@ -211,7 +233,7 @@ public class Game {
 		player.setHp(player.getHp() + heal);
 		System.out.println("Il vous reste " + player1.getMana() + " manas");
 		System.out.println(
-				"Santé de " + player.getClass().getSimpleName() + " " + player.getHeroName() + " : " + player.getHp());
+				"SantÃ© de " + player.getClass().getSimpleName() + " " + player.getHeroName() + " : " + player.getHp());
 	}
 
 	public static void methode_combat1(Combatant player, Combatant enemy) {
@@ -239,15 +261,15 @@ public class Game {
 				int choix = 0;
 				if (hero_liste.get(i).getClass().getSimpleName().contentEquals("Healer")) {
 					choix = scannerInt(
-							"Choisissez:1-Guérir un héro, 2- Se défendre, 3-Manger de la nourriture, 4-Boire une potion",
+							"Choisissez:1-GuÃ©rir un hÃ©ro, 2- Se dÃ©fendre, 3-Manger de la nourriture, 4-Boire une potion",
 							1, 4);
 				} else {
 					if (liste_item.get(i).get(1).getNumber() == 0) {
-						choix = scannerInt("Choisissez:1-Attaquer, 2- Se défendre, 4-Boire une potion(si Spellcaster)",
+						choix = scannerInt("Choisissez:1-Attaquer, 2- Se dÃ©fendre, 4-Boire une potion(si Spellcaster)",
 								1, 4);
 					} else {
 						choix = scannerInt(
-								"Choisissez:1-Attaquer, 2- Se défendre, 3-Manger de la nourriture, 4-Boire une potion(si Spellcaster)",
+								"Choisissez:1-Attaquer, 2- Se dÃ©fendre, 3-Manger de la nourriture, 4-Boire une potion(si Spellcaster)",
 								1, 4);
 					}
 				}
@@ -255,7 +277,7 @@ public class Game {
 
 				if (choix == 1) {
 					if (hero_liste.get(i).getClass().getSimpleName().contentEquals("Healer")) {
-						System.out.print("Choisissez un héro à guérir:");
+						System.out.print("Choisissez un hÃ©ro Ã  guÃ©rir:");
 						for (int k = 0; k < hero_liste.size(); k++) {
 							System.out.print(", " + k + "-" + hero_liste.get(k).getClass().getSimpleName() + " "
 									+ hero_liste.get(k).getHeroName());
@@ -265,7 +287,7 @@ public class Game {
 					} else {
 						if (enemy_liste.size() != 0) {
 							methode_combat(hero_liste.get(i), enemy_liste.get(0), liste_item, i);
-							System.out.println("Santé de l'ennemi:  " + enemy_liste.get(0).getHp());
+							System.out.println("SantÃ© de l'ennemi:  " + enemy_liste.get(0).getHp());
 							if (enemy_liste.get(0).getHp() == 0) {
 								System.out.println("Vous avez vaincu un ennemi");
 								enemy_liste.remove(0);
@@ -280,7 +302,7 @@ public class Game {
 					hero_liste.get(i).setHp(hero_liste.get(i).getHp() + liste_item.get(i).get(1).getLife_given());
 					l--;
 					liste_item.get(i).get(1).setNumber(l);
-					System.out.println("Santé de " + hero_liste.get(i).getClass().getSimpleName() + " "
+					System.out.println("SantÃ© de " + hero_liste.get(i).getClass().getSimpleName() + " "
 							+ hero_liste.get(i).getHeroName() + ": " + hero_liste.get(i).getHp());
 					System.out.println("Vous n'avez plus que " + liste_item.get(i).get(1).getNumber() + " steak");
 				}
@@ -296,7 +318,7 @@ public class Game {
 				if ((enemy_liste.size() != 0) && (choix != 2)) {
 					System.out.println("L'ennemi vous attaque");
 					methode_combat1(enemy_liste.get(0), hero_liste.get(i));
-					System.out.println("Santé de " + hero_liste.get(i).getClass().getSimpleName() + ": "
+					System.out.println("SantÃ© de " + hero_liste.get(i).getClass().getSimpleName() + ": "
 							+ hero_liste.get(i).getHp());
 					if (hero_liste.get(i).getHp() == 0) {
 						System.out.println("Vous avez perdu votre " + hero_liste.get(i).getClass().getSimpleName() + " "
@@ -315,7 +337,7 @@ public class Game {
 		}
 
 		if (enemy_liste.size() == 0) {
-			System.out.println("Vous avez vaincu tout les ennemis de la manche!Bravo à vous");
+			System.out.println("Vous avez vaincu tout les ennemis de la manche!Bravo Ã  vous");
 		} else {
 			System.out.println("Vous avez perdu,veuillez recommencer la manche");
 		}
@@ -324,23 +346,23 @@ public class Game {
 	public static void victoire(List<Hero> hero_liste, List<List<Item>> liste_item) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(
-				"Vous pouvez améliorer vos héros, choisissez entre:1-augmenter les dégats de votre héro,2-augmenter la défense de votre héro,3-augmenter l'efficacité de la potion,4-augmenter l'efficacité de la nourriture,5-augmenter le nombre de nourriture,6- augmenter le nombre de potion,7-augmenter le nombre de flèches(Pour Hunter) , 8-augmenter le mana(Pour Spellcaster)");
+				"Vous pouvez amÃ©liorer vos hÃ©ros, choisissez entre:1-augmenter les dÃ©gats de votre hÃ©ro,2-augmenter la dÃ©fense de votre hÃ©ro,3-augmenter l'efficacitÃ© de la potion,4-augmenter l'efficacitÃ© de la nourriture,5-augmenter le nombre de nourriture,6- augmenter le nombre de potion,7-augmenter le nombre de flÃ¨ches(Pour Hunter) , 8-augmenter le mana(Pour Spellcaster)");
 
 		for (int i = 0; i < hero_liste.size(); i++) {
-			int choix = scannerInt("Pour le héro " + hero_liste.get(i).getClass().getSimpleName() + " "
+			int choix = scannerInt("Pour le hÃ©ro " + hero_liste.get(i).getClass().getSimpleName() + " "
 					+ hero_liste.get(i).getHeroName(), 1, 8);
 			if (choix == 1) {
 				liste_item.get(i).get(0).setDegats(liste_item.get(i).get(0).getDegats() + 5);
-				System.out.println("nouveau nombre de dégats de l'attaque: " + liste_item.get(i).get(0).getDegats());
+				System.out.println("nouveau nombre de dÃ©gats de l'attaque: " + liste_item.get(i).get(0).getDegats());
 			} else if (choix == 2) {
 				hero_liste.get(i).setDefence(hero_liste.get(i).getDefence() + 3);
-				System.out.println("nouvelle efficacité de la défense: " + hero_liste.get(i).getDefence());
+				System.out.println("nouvelle efficacitÃ© de la dÃ©fense: " + hero_liste.get(i).getDefence());
 			} else if (choix == 3) {
 				liste_item.get(i).get(2).setMana_given(liste_item.get(i).get(2).getMana_given() + 4);
 				System.out.println("Nouveau taux de mana de la potion: " + liste_item.get(i).get(2).getMana_given());
 			} else if (choix == 4) {
 				liste_item.get(i).get(1).setLife_given(liste_item.get(i).get(1).getLife_given() + 4);
-				System.out.println("Nouvelle vie générée par un steak: " + liste_item.get(i).get(1).getLife_given());
+				System.out.println("Nouvelle vie gÃ©nÃ©rÃ©e par un steak: " + liste_item.get(i).get(1).getLife_given());
 			} else if (choix == 5) {
 				liste_item.get(i).get(1).setNumber(liste_item.get(i).get(1).getNumber() + 2);
 				System.out.println("Nombre de steaks: " + liste_item.get(i).get(1).getNumber());
@@ -349,7 +371,7 @@ public class Game {
 				System.out.println("Nombre de potions: " + liste_item.get(i).get(2).getNumber());
 			} else if (choix == 7) {
 				liste_item.get(i).get(0).setNombre_Utilisation(liste_item.get(i).get(0).getNombre_Utilisation() + 4);
-				System.out.println("Nombre de flèches:" + liste_item.get(i).get(0).getNombre_Utilisation());
+				System.out.println("Nombre de flÃ¨ches:" + liste_item.get(i).get(0).getNombre_Utilisation());
 			} else if (choix == 8) {
 				hero_liste.get(i).setMana(hero_liste.get(i).getMana() + 10);
 				System.out.println("Vous disposez de " + hero_liste.get(i).getMana() + " manas");
@@ -361,7 +383,7 @@ public class Game {
 
 	public static void main(String[] args) {
 
-		int nombre_hero = scannerInt("choisissez un nombre de héro(maximum 5 joueurs)", 0, 5);
+		int nombre_hero = scannerInt("choisissez un nombre de hÃ©ro(maximum 5 joueurs)", 0, 5);
 		List<Hero> liste_hero = new ArrayList<>();
 		List<Enemy> liste_enemy = new ArrayList<>();
 		List<List<Item>> liste_item = new ArrayList<>();
@@ -370,13 +392,29 @@ public class Game {
 		creation_item(liste_item, liste_hero);
 		caracteristiques(liste_item, liste_hero);
 		System.out.println("********************************");
-		System.out.println("1ère vague:");
+		System.out.println("1Ã¨re vague:");
 		System.out.print("Vous allez affronter:");
 		creation_enemy(liste_enemy, nombre_hero);
 		caractennemy(liste_enemy);
 
 		combat(liste_enemy, liste_hero, liste_item);
 		victoire(liste_hero, liste_item);
+			System.out.println("********************************");
+		System.out.println("2Ã¨re vague:");
+		System.out.print("Vous allez affronter:");
+		creation_enemy1(liste_enemy, nombre_hero);
+		caractennemy(liste_enemy);
+		combat(liste_enemy, liste_hero, liste_item);
+		victoire(liste_hero, liste_item);
+		System.out.println("********************************");
+		System.out.println("3Ã¨re vague:");
+		System.out.print("Vous allez affronter:");
+		creation_enemy2(liste_enemy, nombre_hero);
+		caractennemy(liste_enemy);
+		combat(liste_enemy, liste_hero, liste_item);
+		if (liste_hero.size()>0) {
+			System.out.println("Bravo,vous avez fini le jeu");
+		}
 
 	}
 }
